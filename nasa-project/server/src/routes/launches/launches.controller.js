@@ -1,9 +1,11 @@
-const { launches } = require('../../models/launches.model');
+const { getAllLaunches } = require('../../models/launches.model');
 
-function getAllLaunches(req, res) {
-  return res.status(200).json(Array.from(launches.values()));
+// It's a know pattern to call httpXXX functions those that 
+// receives req, res and send a respond
+function httpGetAllLaunches(req, res) {
+  return res.status(200).json(getAllLaunches()); // The controller uses Data access functions only
 }
 
 module.exports = {
-  getAllLaunches,
+  httpGetAllLaunches,
 }
