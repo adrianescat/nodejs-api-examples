@@ -14,8 +14,8 @@ app.use(cors({
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')))
-app.use(planetsRouter);
-app.use(launchesRouter);
+app.use('/planets', planetsRouter);
+app.use('/launches', launchesRouter);
 
 // Look at the '/*'. That is for matching any url that was not provided above. So
 // that helps React router on the FE to load different routes
