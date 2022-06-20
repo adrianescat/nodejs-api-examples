@@ -10,7 +10,7 @@ function httpAddNewLaunch(req, res) {
   const launch = req.body;
 
   // We check if the data sent by the client is correct. We can use third libraries for this
-  if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.destination) {
+  if (!launch.mission || !launch.rocket || !launch.launchDate || !launch.target) {
     return res.status(400).json({
       error: 'Missing required launch property'
     })
