@@ -1,14 +1,12 @@
 const express = require('express');
 const cluster = require('cluster');
+const os = require('os'); // Operative system module
 
 const app = express();
 
 function delay(duration) {
   const startTime = Date.now();
   while (Date.now() - startTime < duration) {
-    // Now, you can try again with 2 tabs in the browser. Remember to disable cache
-    // in the network tab. You will see that each request take only 9 seconds, and the 
-    // ids in the responses are different
   }
 }
 
@@ -24,8 +22,13 @@ app.get('/timer', (req, res) => {
 
 if (cluster.isMaster) {
   console.log('Master has been started');
-  cluster.fork(); // each worker runs the same server.js code
-  cluster.fork();
+
+  const NUM_WORKERS = os.cpus().length // Logical cores of the CPU
+  
+  console.log(`Amount of cores: ${NUM_WORKERS}`);
+  for (let i = 0; i < NUM_WORKERS; i++) {
+    cluster.fork(); // each worker runs the same server.js code
+  }
 } else {
   console.log('Worker process started');
   // Node will know that workers were created and are ready to listen
