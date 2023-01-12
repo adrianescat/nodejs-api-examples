@@ -8,7 +8,8 @@
     "start": "pm2 start src/server.js -i max",
     "stop": "pm2 stop server",
     "delete": "pm2 delete server",
-    "show": "pm2 show"
+    "show": "pm2 show",
+    "reload": "pm2 reload server"
   },
   "author": "Adrian Escat",
   "license": "ISC",
