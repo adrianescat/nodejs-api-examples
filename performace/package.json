@@ -1,0 +1,15 @@
+{
+  "name": "performace",
+  "version": "1.0.0",
+  "description": "performance nodejs examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "author": "Adrian Escat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
