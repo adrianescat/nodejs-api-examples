@@ -1,6 +1,4 @@
 const express = require('express');
-const cluster = require('cluster');
-const os = require('os'); // Operative system module
 
 const app = express();
 
@@ -20,17 +18,4 @@ app.get('/timer', (req, res) => {
   res.send(`Ding Ding Ding: ${process.pid}`)
 })
 
-if (cluster.isMaster) {
-  console.log('Master has been started');
-
-  const NUM_WORKERS = os.cpus().length // Logical cores of the CPU
-  
-  console.log(`Amount of cores: ${NUM_WORKERS}`);
-  for (let i = 0; i < NUM_WORKERS; i++) {
-    cluster.fork(); // each worker runs the same server.js code
-  }
-} else {
-  console.log('Worker process started');
-  // Node will know that workers were created and are ready to listen
-  app.listen(3000);
-}
+app.listen(3000);
